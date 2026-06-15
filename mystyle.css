@@ -1,0 +1,62 @@
+body{
+    background-color: beige;
+    font-family: "Times New Roman", serif;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: darkgoldenrod;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav{
+    background-color: darkgrey;
+    padding:20px 40px;
+    margin: 0;
+    text-align: center;
+}
+
+nav a{
+    color: darkkhaki;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px 20px;
+    margin: 0;
+}
+
+nav a:hover{
+    color: darkred;
+}
+
+#content-wrapper{
+    display: flex;
+    min-height: 400px;
+    font-size: 18px;
+}
+
+aside{
+    background-color: darksalmon;
+    padding: 20px;
+    margin: 0;
+    width: 20%;
+    display: block;
+}
+
+main{
+    background-color: firebrick;
+    padding: 10px 20px;
+    margin: 0;
+    width: 80%;
+} 
+
+footer{
+    background-color: azure;
+    font-size: 25px;
+    text-align: center;
+    padding: 0;
+}
