@@ -1,4 +1,5 @@
-body{
+body
+{
     background-color: beige;
     font-family: "Times New Roman", serif;
     font-size: 25px;
@@ -6,7 +7,8 @@ body{
     padding: 0;
 }
 
-header{
+header
+{
     background-color: darkgoldenrod;
     font-size: 30px;
     margin: 0;
@@ -14,14 +16,16 @@ header{
     text-align: center;
 }
 
-nav{
+nav
+{
     background-color: darkgrey;
     padding:20px 40px;
     margin: 0;
     text-align: center;
 }
 
-nav a{
+nav a
+{
     color: darkkhaki;
     font-weight: bold;
     text-decoration: none;
@@ -29,17 +33,20 @@ nav a{
     margin: 0;
 }
 
-nav a:hover{
+nav a:hover
+{
     color: darkred;
 }
 
-#content-wrapper{
+#content-wrapper
+{
     display: flex;
     min-height: 400px;
     font-size: 18px;
 }
 
-aside{
+aside
+{
     background-color: darksalmon;
     padding: 20px;
     margin: 0;
@@ -47,16 +54,57 @@ aside{
     display: block;
 }
 
-main{
+main
+{
     background-color: firebrick;
     padding: 10px 20px;
     margin: 0;
     width: 80%;
 } 
 
-footer{
+#passenger-button
+{
+    background-color: red;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 12px;
+    border: 1px solid black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#passenger-button:hover
+{
+    background-color:darkgoldenrod;
+    color: white;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+}
+
+#passenger-button img
+{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+footer
+{
     background-color: azure;
     font-size: 25px;
     text-align: center;
     padding: 0;
+}
+
+#return-date-section 
+{
+  display: none;
+}
+
+#passenger-section
+{
+    display: none;
 }
