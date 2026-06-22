@@ -31,28 +31,120 @@ function backgroundColorChange()
     sectorTarget.style.backgroundColor = colorInput.value;
 }
 
-// validation requirements.
-// First name — alphabetic only, first letter capitalized
-// Last name — same rules
-// First and last name cannot be the same
-// Phone — format (ddd) ddd-dddd
-// Email — must contain @ and .
-// Gender — one must be selected
-// Comment — at least 10 characters
-
 
 function validateName(id)
 {
     const userName = document.getElementById(id).value;
-    const regex = /^[A-Z][a-zA-Z]*$/;
+    const nameRegex = /^[A-Z][a-zA-Z]*$/;
 
-    return regex.test(userName);
+    return nameRegex.test(userName);
 }
 
-function validateForm()
+function validatePhoneNumber()
 {
-    validateName('first-name');
-    validateName('last-name');
+    const phoneNumber = document.getElementById('phone-number').value;
+    const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+    return phoneRegex.test(phoneNumber);
+}
+
+function validateEmail()
+{
+    const eMail = document.getElementById('email').value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(eMail);
+}
+
+function validateComment()
+{
+    const comMent = document.getElementById('comment').value;
+    const commentRegex = /^[\s\S]{10,}$/;
+
+    return commentRegex.test(comMent);
+}
+
+function validateContactForm()
+{
+
+    const errorMessage = document.getElementById('error-message');
+    const result = document.getElementById('result');
+
+
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const phonenUmber = document.getElementById('phone-number').value;
+    const emAil = document.getElementById('email').value;
+    const coMment = document.getElementById('comment').value;
+
+    const maleGender = document.getElementById('gender-male').checked;
+    const femaleGender = document.getElementById('gender-female').checked;
+
+
+
+    if(!validateName('first-name'))
+    {
+        errorMessage.textContent = "First name must start with a capital letter and be alphabetic only.";
+        result.textContent = "";
+        return false;
+    }
+    if(!validateName('last-name'))
+    {
+        errorMessage.textContent = "Last name must start with a capital letter and be alphabetic only.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(firstName === lastName)
+    {
+        errorMessage.textContent = "First and Last name cannot be the same.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!validatePhoneNumber())
+    {
+        errorMessage.textContent = "Phone number must use the format (123) 456-7890."
+        result.textContent = "";
+        return false;
+    }
+
+    if(!validateEmail())
+    {
+        errorMessage.textContent = "Email must have @ and .";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!maleGender && !femaleGender)
+    {
+        errorMessage.textContent = "Please select a gender";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!validateComment())
+    {
+        errorMessage.textContent = "Please enter at least 10 characters";
+        result.textContent = "";
+        return false;
+    }
+
+    errorMessage.textContent = "";
+
+    result.innerHTML = `
+                    <p> First Name: ${firstName} </p>
+                    <p> Last Name: ${lastName} </p>
+                    <P> Phone Number: ${phonenUmber} </P>
+                    <p> Email: ${emAil}</p>
+                    <p> Gender: ${maleGender ? "Male" : "Female"} </p>
+                    <p> Comment: ${coMment} </p>
+                    `;
+                    
+
+
+    return false;
+
 }
 
 function hideReturnDate()
