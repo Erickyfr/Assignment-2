@@ -282,7 +282,7 @@ function validateFlightForm()
 
                     <br>
                     <p> Flight Info </p>
-                    <p> Origin: ${origin} </p> 
+                    <p> Origin: ${origin} </p>
                     <p> Destination: ${destination} </p>
                     <p> Departure Date: ${departureDate} </p>
 
@@ -296,6 +296,126 @@ function validateFlightForm()
                     `;
 
 
+
+    return false;
+
+}
+
+// stays page validation (no regular expression used in this part)
+
+function isValidStayDate(dateValue)
+{
+    // check in/out must be between Sep 1, 2024 and Dec 1, 2024
+    const minDate = new Date("2024-09-01");
+    const maxDate = new Date("2024-12-01");
+    const theDate = new Date(dateValue);
+
+    return theDate >= minDate && theDate <= maxDate;
+}
+
+function isTexasOrCaliforniaCity(cityName)
+{
+    // same Texas and California cities accepted on the flight page, without using regex
+    const cityList = ["houston", "dallas", "austin", "san antonio", "fort worth", "el paso", "arlington", "corpus christi", "plano", "lubbock", "los angeles", "san diego", "san francisco", "sacramento", "san jose", "fresno", "long beach", "oakland", "bakersfield", "anaheim"];
+
+    return cityList.includes(cityName.trim().toLowerCase());
+}
+
+function validateStaysForm()
+{
+    const city = document.getElementById('stay-city').value.trim();
+    const checkIn = document.getElementById('check-in-date').value;
+    const checkOut = document.getElementById('check-out-date').value;
+
+    const adults = Number(document.getElementById('adult-guest').value);
+    const children = Number(document.getElementById('children-guest').value);
+    const infants = Number(document.getElementById('infant-guest').value);
+
+    const errorMessage = document.getElementById('error-message');
+    const result = document.getElementById('result');
+
+    if(city === "")
+    {
+        errorMessage.textContent = "City empty, enter a city in Texas or California.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!isTexasOrCaliforniaCity(city))
+    {
+        errorMessage.textContent = "City must be a city in Texas or California.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(checkIn === "")
+    {
+        errorMessage.textContent = "Please select a check in date.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!isValidStayDate(checkIn))
+    {
+        errorMessage.textContent = "Check in date must be between Sep 1, 2024 and Dec 1, 2024.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(checkOut === "")
+    {
+        errorMessage.textContent = "Please select a check out date.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!isValidStayDate(checkOut))
+    {
+        errorMessage.textContent = "Check out date must be between Sep 1, 2024 and Dec 1, 2024.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(new Date(checkOut) <= new Date(checkIn))
+    {
+        errorMessage.textContent = "Check out date must be after the check in date.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(!Number.isInteger(adults) || !Number.isInteger(children) || !Number.isInteger(infants) || adults < 0 || children < 0 || infants < 0)
+    {
+        errorMessage.textContent = "Guest counts must be whole numbers of 0 or more.";
+        result.textContent = "";
+        return false;
+    }
+
+    if(adults < 1)
+    {
+        errorMessage.textContent = "At least one adult is required.";
+        result.textContent = "";
+        return false;
+    }
+
+    // infants can stay with adults, so only adults and children count toward the 2 per room limit
+    const numberOfRooms = Math.ceil((adults + children) / 2);
+
+    errorMessage.textContent = "";
+
+    result.innerHTML = `
+                    <p> City: ${city} </p>
+                    <p> Check In Date: ${checkIn} </p>
+                    <p> Check Out Date: ${checkOut} </p>
+
+                    <br>
+                    <p> Guest Quantity </p>
+                    <p> Adults: ${adults} </p>
+                    <p> Children: ${children} </p>
+                    <p> Infants: ${infants} </p>
+
+                    <br>
+                    <p> Number of Rooms Needed: ${numberOfRooms} </p>
+                    `;
 
     return false;
 

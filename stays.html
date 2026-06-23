@@ -24,16 +24,60 @@
 
         <div id ="content-wrapper">
             <aside>
+                <div>
+                    <label> Font Size: </label>
+                    <input type="number" value = "25" min="12" max="32" id="font-size-input">
+                    <button onclick="fontSizeChange()"> apply </button>
 
+                </div>
+
+                <div>
+                    <label> Background Color: </label>
+                    <input type="color" id="background-color-input">
+                    <button onclick="backgroundColorChange()"> apply </button>
+                </div>
             </aside>
 
             <main>
+
+                <form id="stays-form" onsubmit="return validateStaysForm()">
+
+                    <!-- city input -->
+                    <label for="stay-city"> City </label>
+                    <input type="text" id="stay-city"> <br><br>
+
+                    <!-- check in / check out dates -->
+                    <label for="check-in-date"> Check In Date </label>
+                    <input type="date" id="check-in-date"> <br>
+
+                    <label for="check-out-date"> Check Out Date </label>
+                    <input type="date" id="check-out-date"> <br><br>
+
+                    <!-- guests per category -->
+                    <label> Guests </label> <br>
+
+                    <label for="adult-guest"> Adult </label>
+                    <input type="number" id="adult-guest" value="0"> <br>
+
+                    <label for="children-guest"> Children </label>
+                    <input type="number" id="children-guest" value="0"> <br>
+
+                    <label for="infant-guest"> Infant </label>
+                    <input type="number" id="infant-guest" value="0">
+                    <br><br>
+
+                    <!-- search button -->
+                    <button type="submit"> Search </button>
+                </form>
+
+                <div id="error-message"></div>
+                <div id="result"></div>
 
             </main>
         </div>
 
         <footer>
-            <p><b><i> Created by </i></b></p>
+            <p><b><i> Created By: <br> Ewere E Ikaria & Syed F Hossan </i></b></p>
         </footer>
     </body>
 </html>

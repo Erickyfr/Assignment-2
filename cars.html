@@ -6,6 +6,7 @@
 
       <link rel="stylesheet" href="mystyle.css">
       <script src="main.js" defer></script>
+      <script src="cars.js" defer></script>
     </head>
 
     <body>
@@ -24,16 +25,33 @@
 
         <div id ="content-wrapper">
             <aside>
+                <div>
+                    <label> Font Size: </label>
+                    <input type="number" value = "25" min="12" max="32" id="font-size-input">
+                    <button onclick="fontSizeChange()"> apply </button>
 
+                </div>
+
+                <div>
+                    <label> Background Color: </label>
+                    <input type="color" id="background-color-input">
+                    <button onclick="backgroundColorChange()"> apply </button>
+                </div>
             </aside>
 
             <main>
+
+                <!-- this form is built with DOM methods in cars.js -->
+                <form id="car-form"></form>
+
+                <div id="error-message"></div>
+                <div id="result"></div>
 
             </main>
         </div>
 
         <footer>
-            <p><b><i> Created by </i></b></p>
+            <p><b><i> Created By: <br> Ewere E Ikaria & Syed F Hossan </i></b></p>
         </footer>
     </body>
 </html>
